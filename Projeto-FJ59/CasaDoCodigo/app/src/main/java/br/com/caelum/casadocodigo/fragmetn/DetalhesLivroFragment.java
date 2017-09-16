@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import br.com.caelum.casadocodigo.R;
 import br.com.caelum.casadocodigo.modelo.Autor;
 import br.com.caelum.casadocodigo.modelo.Livro;
@@ -80,6 +82,11 @@ public class DetalhesLivroFragment extends Fragment {
         numPaginas.setText(livro.getNumPaginas());
         isnb.setText(livro.getISBN());
         dataPublicacao.setText(livro.getDataPublicacao());
+
+        Picasso.with(getContext())
+                .load(livro.getUrlFoto())
+                .placeholder(R.drawable.livro)
+                .into(foto);
 
         String fmt = "Comprar Livro %s - R$ %.2f";
         botaoComprarFisico.setText(String.format(fmt, "Fisico", livro.getValorFisico()))    ;

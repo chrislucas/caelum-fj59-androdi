@@ -1,5 +1,7 @@
 package br.com.caelum.casadocodigo;
 
+import java.util.List;
+
 import br.com.caelum.casadocodigo.modelo.Livro;
 
 /**
@@ -7,5 +9,7 @@ import br.com.caelum.casadocodigo.modelo.Livro;
  */
 
 public interface LivroDelegate {
-    public void lidaComLivvroSelecionado(Livro livro);
+    void lidaComLivroSelecionado(Livro livro);
+    void lidaComSucesso(List<Livro> livros);
+    void lidaComErro(Throwable t);
 }

@@ -41,25 +41,39 @@ public class ListaLivroFragment extends Fragment {
     @BindView(R.id.lista_livro)
     RecyclerView recyclerView;
 
+    private RecyclerView.Adapter adapter;
+
+    private List<Livro> livros;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container
             , @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_lista_livros, container, false);
         ButterKnife.bind(this, layout);
-
-        List<Livro> livros = new ArrayList<>();
+        livros = new ArrayList<>();
+        /*
         for(int i=0; i<6; i++) {
             Autor autor = new Autor();
             autor.setNome(String.format("Autor %d", i));
             Livro livro = new Livro("", "", Arrays.asList(autor));
             livros.add(livro);
         }
-
+        */
         //RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.lista_livro);
-        recyclerView.setAdapter(new LivroAdapter(livros, delegate));
+        adapter = new LivroAdapter(livros, delegate);
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         return layout;
+    }
+
+
+    public void populaLista(List<Livro> novaListaDeLivros) {
+        if(this.livros == null)
+            livros = new ArrayList<>();
+        else
+            livros.clear();
+        livros.addAll(novaListaDeLivros);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
     }
 }

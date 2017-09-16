@@ -7,12 +7,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import br.com.caelum.casadocodigo.LivroDelegate;
 import br.com.caelum.casadocodigo.R;
 import br.com.caelum.casadocodigo.modelo.Livro;
-import br.com.caelum.casadocodigo.viewholder.LivroViewHolder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -41,7 +42,7 @@ public class LivroAdapter extends RecyclerView.Adapter<LivroAdapter.ViewHolder> 
         @OnClick(R.id.item_livro)
         public void clickItem() {
             Livro livro = livros.get(getAdapterPosition());
-            delegate.lidaComLivvroSelecionado(livro);
+            delegate.lidaComLivroSelecionado(livro);
         }
     }
 
@@ -69,7 +70,11 @@ public class LivroAdapter extends RecyclerView.Adapter<LivroAdapter.ViewHolder> 
         ViewHolder viewHolder =(ViewHolder) holder;
         Livro livro = livros.get(position);
         viewHolder.nome.setText(livro.getNome());
-
+        Picasso
+                .with(viewHolder.foto.getContext())
+                .load(livro.getUrlFoto())
+                .placeholder(R.drawable.livro)
+                .into(viewHolder.foto);
     }
 
 
