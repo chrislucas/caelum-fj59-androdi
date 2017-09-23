@@ -1,9 +1,13 @@
 package br.com.caelum.casadocodigo.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
@@ -16,8 +20,8 @@ import br.com.caelum.casadocodigo.LivroDelegate;
 import br.com.caelum.casadocodigo.R;
 import br.com.caelum.casadocodigo.events.LivroEvent;
 import br.com.caelum.casadocodigo.events.ThrowableEvent;
-import br.com.caelum.casadocodigo.fragmetn.DetalhesLivroFragment;
-import br.com.caelum.casadocodigo.fragmetn.ListaLivroFragment;
+import br.com.caelum.casadocodigo.fragment.DetalhesLivroFragment;
+import br.com.caelum.casadocodigo.fragment.ListaLivroFragment;
 import br.com.caelum.casadocodigo.http.WebClient;
 import br.com.caelum.casadocodigo.modelo.Livro;
 
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements LivroDelegate {
         listaLivroFragment = ListaLivroFragment.getInstance(this);
         ft.replace(R.id.frame_principal, listaLivroFragment);
         ft.commit();
-        new WebClient().getLivros();
+        new WebClient().retornaLivrosDoServidor(0, 10);
     }
 
 
@@ -50,6 +54,25 @@ public class MainActivity extends AppCompatActivity implements LivroDelegate {
 
         fragmentTransaction.replace(R.id.frame_principal, detalhesLivroFragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.vai_para_carrinho:
+                Intent intent = new Intent(this, CarrinhoActivty.class);
+                // TODO criar um bundle
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 
     @Subscribe

@@ -2,6 +2,7 @@ package br.com.caelum.casadocodigo.http;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.casadocodigo.LivroDelegate;
@@ -20,23 +21,29 @@ import retrofit2.Retrofit;
 
 public class WebClient {
 
-    private static final String SERVER_URL = "http://cdcmob.heorkuapp.com/";
-
+    private static final String SERVER_URL = "http://cdcmob.herokuapp.com/";
     private LivroDelegate livroDelegate;
+    private Retrofit client;
 
     public WebClient(LivroDelegate livroDelegate) {
         this.livroDelegate = livroDelegate;
+        createInstanceRetrofit();
     }
 
-    public WebClient() {}
+    public WebClient() {
+        createInstanceRetrofit();
+    }
 
-    public void getLivros() {
-        Retrofit client = new Retrofit.Builder()
+    private void createInstanceRetrofit() {
+        client = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
                 .addConverterFactory(new ItemServiceConverterFactory())
                 .build();
+    }
+
+    public void getLivros() {
         LivrosService service = client.create(LivrosService.class);
-        Call<List<Livro>> call = service.listaLivros();
+        Call<List<Livro>> call = service.listarLivros();
         call.enqueue(new Callback<List<Livro>>() {
             @Override
             public void onResponse(Call<List<Livro>> call, Response<List<Livro>> response) {
@@ -49,6 +56,24 @@ public class WebClient {
             public void onFailure(Call<List<Livro>> call, Throwable t) {
                 EventBus.getDefault().post(new ThrowableEvent(t));
                 //livroDelegate.lidaComErro(t);]
+            }
+        });
+    }
+
+    public void retornaLivrosDoServidor(int indice, int limite) {
+        LivrosService service = client.create(LivrosService.class);
+        Call<List<Livro>> call = service.listarLivros(indice, limite);
+        call.enqueue(new Callback<List<Livro>>() {
+            @Override
+            public void onResponse(Call<List<Livro>> call, Response<List<Livro>> response) {
+                List<Livro> t = new ArrayList<Livro>(response.body());
+                List<Livro> livros = response.body();
+                EventBus.getDefault().post(new LivroEvent(livros));
+            }
+
+            @Override
+            public void onFailure(Call<List<Livro>> call, Throwable t) {
+                EventBus.getDefault().post(new ThrowableEvent(t));
             }
         });
     }

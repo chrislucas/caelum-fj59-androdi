@@ -1,7 +1,8 @@
-package br.com.caelum.casadocodigo.fragmetn;
+package br.com.caelum.casadocodigo.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import br.com.caelum.casadocodigo.LivroDelegate;
 import br.com.caelum.casadocodigo.R;
+import br.com.caelum.casadocodigo.adapter.EndLessList;
 import br.com.caelum.casadocodigo.adapter.LivroAdapter;
-import br.com.caelum.casadocodigo.modelo.Autor;
+import br.com.caelum.casadocodigo.http.WebClient;
 import br.com.caelum.casadocodigo.modelo.Livro;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,7 +43,7 @@ public class ListaLivroFragment extends Fragment {
     RecyclerView recyclerView;
 
     private RecyclerView.Adapter adapter;
-
+    private WebClient webClient;
     private List<Livro> livros;
     @Nullable
     @Override
@@ -50,30 +51,31 @@ public class ListaLivroFragment extends Fragment {
             , @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_lista_livros, container, false);
         ButterKnife.bind(this, layout);
-        livros = new ArrayList<>();
-        /*
-        for(int i=0; i<6; i++) {
-            Autor autor = new Autor();
-            autor.setNome(String.format("Autor %d", i));
-            Livro livro = new Livro("", "", Arrays.asList(autor));
-            livros.add(livro);
-        }
-        */
-        //RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.lista_livro);
-        adapter = new LivroAdapter(livros, delegate);
+        livros      = new ArrayList<>();
+        webClient   = new WebClient(delegate);
+        adapter     = new LivroAdapter(livros, delegate);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addOnScrollListener(new EndLessList() {
+            @Override
+            public void carregaMaisItens() {
+                Snackbar.make(recyclerView, "Carregando Mais Itens", Snackbar.LENGTH_SHORT).show();
+                webClient.retornaLivrosDoServidor(livros.size(), 10);
+            }
+        });
         return layout;
     }
 
 
     public void populaLista(List<Livro> novaListaDeLivros) {
-        if(this.livros == null)
-            livros = new ArrayList<>();
-        else
-            livros.clear();
         livros.addAll(novaListaDeLivros);
         recyclerView.getAdapter().notifyDataSetChanged();
-        //adapter.notifyDataSetChanged();
+        recyclerView.addOnScrollListener(new EndLessList() {
+            @Override
+            public void carregaMaisItens() {
+                Snackbar.make(recyclerView, "Carregando Mais Itens", Snackbar.LENGTH_SHORT).show();
+                webClient.retornaLivrosDoServidor(livros.size(), 10);
+            }
+        });
     }
 }
