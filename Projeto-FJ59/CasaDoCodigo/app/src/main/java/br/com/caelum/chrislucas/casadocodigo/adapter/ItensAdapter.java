@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.caelum.chrislucas.R;
+import br.com.caelum.chrislucas.casadocodigo.R;
 import br.com.caelum.chrislucas.casadocodigo.modelo.Item;
 import br.com.caelum.chrislucas.casadocodigo.modelo.TipoDeCompra;
 

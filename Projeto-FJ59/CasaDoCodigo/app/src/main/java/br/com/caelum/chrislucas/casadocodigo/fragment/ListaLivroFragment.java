@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.chrislucas.casadocodigo.LivroDelegate;
-import br.com.caelum.chrislucas.R;
+import br.com.caelum.chrislucas.casadocodigo.R;
 import br.com.caelum.chrislucas.casadocodigo.adapter.EndLessList;
 import br.com.caelum.chrislucas.casadocodigo.adapter.LivroAdapter;
 import br.com.caelum.chrislucas.casadocodigo.http.WebClient;
@@ -45,6 +45,8 @@ public class ListaLivroFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private WebClient webClient;
     private List<Livro> livros;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container

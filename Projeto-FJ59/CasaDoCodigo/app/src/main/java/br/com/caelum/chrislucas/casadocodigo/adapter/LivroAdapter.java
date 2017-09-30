@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.com.caelum.chrislucas.casadocodigo.LivroDelegate;
-import br.com.caelum.chrislucas.R;
+import br.com.caelum.chrislucas.casadocodigo.R;
 import br.com.caelum.chrislucas.casadocodigo.modelo.Livro;
 import butterknife.BindView;
 import butterknife.ButterKnife;

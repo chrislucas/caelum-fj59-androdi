@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Casa do Código</string>
     <string name="carrinho_vazio">Carrinho Vazio</string>
+    <string name="logout">Sair da aplicação</string>
 </resources>

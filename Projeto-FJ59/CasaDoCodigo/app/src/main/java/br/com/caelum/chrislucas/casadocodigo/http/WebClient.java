@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.com.caelum.chrislucas.casadocodigo.LivroDelegate;
 import br.com.caelum.chrislucas.casadocodigo.converter.ItemServiceConverterFactory;
+import br.com.caelum.chrislucas.casadocodigo.converter.LivroServiceConverterFactory;
 import br.com.caelum.chrislucas.casadocodigo.events.LivroEvent;
 import br.com.caelum.chrislucas.casadocodigo.events.ThrowableEvent;
 import br.com.caelum.chrislucas.casadocodigo.modelo.Livro;
@@ -37,7 +38,7 @@ public class WebClient {
     private void createInstanceRetrofit() {
         client = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
-                .addConverterFactory(new ItemServiceConverterFactory())
+                .addConverterFactory(new LivroServiceConverterFactory())
                 .build();
     }
 
@@ -66,7 +67,6 @@ public class WebClient {
         call.enqueue(new Callback<List<Livro>>() {
             @Override
             public void onResponse(Call<List<Livro>> call, Response<List<Livro>> response) {
-                List<Livro> t = new ArrayList<Livro>(response.body());
                 List<Livro> livros = response.body();
                 EventBus.getDefault().post(new LivroEvent(livros));
             }

@@ -8,4 +8,10 @@
         android:title="@string/carrinho_vazio"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/cdc"
+        android:title="@string/logout"
+        app:showAsAction="withText" />
+
 </menu>

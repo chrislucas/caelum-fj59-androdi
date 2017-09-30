@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "500435040532",
+    "firebase_url": "https://cdcfj59.firebaseio.com",
+    "project_id": "cdcfj59",
+    "storage_bucket": "cdcfj59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500435040532:android:bd915511f8acbd51",
+        "android_client_info": {
+          "package_name": "br.com.caelum.chrislucas.casadocodigo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500435040532-5egqn273pgnasvk8piae73tlb16ar73c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.caelum.chrislucas.casadocodigo",
+            "certificate_hash": "35174f0c7da935ec2cb73ee8cf32e58a10460f15"
+          }
+        },
+        {
+          "client_id": "500435040532-rf9sg1nu9t4op211qcmkd4k7th2asua3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwsRPxyDJhNQZbf2VjP9VwmjBdezAGAuk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500435040532-rf9sg1nu9t4op211qcmkd4k7th2asua3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

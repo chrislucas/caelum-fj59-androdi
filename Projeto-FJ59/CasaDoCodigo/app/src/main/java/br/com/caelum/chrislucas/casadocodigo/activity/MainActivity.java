@@ -17,7 +17,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import br.com.caelum.chrislucas.casadocodigo.LivroDelegate;
-import br.com.caelum.chrislucas.R;
+import br.com.caelum.chrislucas.casadocodigo.R;
 import br.com.caelum.chrislucas.casadocodigo.events.LivroEvent;
 import br.com.caelum.chrislucas.casadocodigo.events.ThrowableEvent;
 import br.com.caelum.chrislucas.casadocodigo.fragment.DetalhesLivroFragment;

@@ -17,7 +17,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import br.com.caelum.chrislucas.R;
+import br.com.caelum.chrislucas.casadocodigo.R;
 import br.com.caelum.chrislucas.casadocodigo.application.CasaDoCodigoApplication;
 import br.com.caelum.chrislucas.casadocodigo.dagger.component.CasaDoCodigoComponent;
 import br.com.caelum.chrislucas.casadocodigo.modelo.Autor;
