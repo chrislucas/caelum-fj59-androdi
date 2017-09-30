@@ -45,8 +45,7 @@ public class ListaLivroFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private WebClient webClient;
     private List<Livro> livros;
-
-
+    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container
