@@ -5,7 +5,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId "br.com.caelum.casadocodigo"
+        applicationId "br.com.caelum.casadocodigo.chrislucas"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
